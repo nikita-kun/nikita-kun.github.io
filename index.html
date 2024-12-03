@@ -195,7 +195,6 @@
 					<a target=_blank href="https://danluu.com/futurist-predictions/">Dan Luu</a>
 					<a target=_blank href="https://www.bartvandersanden.com/photography/concerts/">Bart Vander Sanden</a>
 					<a target=_blank href="https://zpl.fi/">Tuomas Siipola</a>
-					<a target=_blank href="https://100r.co/site/index.html">100r.co</a>
 					<a target=_blank href="https://pketh.org/towards-a-better-whiteboard.html">Pirijan Ketheswaran</a>
 					<a target=_blank href="https://www.windytan.com/p/posts.html">Oona Räisänen</a>
 					<a target=_blank href="https://10maurycy10.github.io">Maurycy's blog</a>
@@ -249,14 +248,6 @@
 			let search = decodeURIComponent(document.location.search).slice(1);
 			let selection;
 			links.classList.add('hidden');
-			let params = [
-				'gallerySize=1.6',
-				'contentOnly=0',
-				"excludeInput=\`cors",
-				`style=.optionButtons{display:none} .dark{background:#cde} .optionDetails a{color: #213764}`];
-			let paramsUnsplash = ['prependToInput=https://images.unsplash.com/photo-',
-				`appendToInput=?h=${window.innerHeight}%26auto%3Dformat%60randflip%60nocomment%60container%3Dimg%60style%3Dobject-fit%3Acover`,
-				].join('&');
 		</script>
 		<script>
 			async function list(name){
@@ -267,6 +258,14 @@
 			}
 		</script>
 		<script>
+			let params = [
+				'gallerySize=1.6',
+				'contentOnly=0',
+				"excludeInput=\`cors",
+				`style=.optionButtons{display:none} .dark{background:#cde} .optionDetails a{color: #213764}`];
+			let paramsUnsplash = ['prependToInput=https://images.unsplash.com/photo-',
+				`appendToInput=` + encodeURIComponent(`?h=${window.outerHeight}&auto=format\`randflip\`nocomment\`container=img\`style=object-fit:contain`)
+				].join('&');
 			function showOrder(src) {
 				order.src = src;
 				order.classList.remove('hidden');
