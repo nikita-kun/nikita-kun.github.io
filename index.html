@@ -82,7 +82,7 @@
 			<details>
 				<summary>about</summary>
 				<p>This website contains my projects and internet bookmarks.</p>
-				<p class='jsrequired hidden'>Scroll down to browse through the links.</p>
+				<p class='jsrequired hidden'>Scroll down to browse through the bookmarks.</p>
 				<p><noscript>Enable JavaScript to browse the link feed.</noscript></p>
 				<p>Nikita Korzhitskii, computer scientist, M.Sc.</p>
 			</details>
@@ -92,8 +92,8 @@
 				<details>
 					<summary skip>visuals</summary>
 					<a target=_blank href="/?shaders">shaders</a>
-					<a target=_blank href="/?panoramas">panoramas</a>
-					<a target=_blank href="/?unsplash-stock-photos" >unsplash</a>
+					<a target=_blank href="/?panoramas">panoramas</a>					
+					<a target=_blank href="/order/#viewStart=1&appendToInput=?h%3Dheight%26auto%3Dformat%60randflip%60nocomment%60container%3Dimg%60style%3Dobject-fit:cover%60rewrite%3F%22height%22%3Dwindow.outerHeight&prependToInput=https://images.unsplash.com/photo-&shuffleInput=1&viewMode=gallery&gallerySize=2&title=Unsplash&url=/list/unsplash-stock-photos" params="cover=/order/#slideshowStart=1&slideshowDelay=12&appendToInput=?h%3Dheight%26auto%3Dformat%60randflip%60nocomment%60container%3Dimg%60style%3Dobject-fit:cover%60rewrite%3F%22height%22%3Dwindow.outerHeight&prependToInput=https://images.unsplash.com/photo-&url=/list/unsplash-stock-photos`nocomment`title=unsplash.com">unsplash</a>
 					<a target=_blank href="/?webgl">webgl</a>
 				</details>
 				<!-- music -->
@@ -101,13 +101,15 @@
 				<!-- podcasts -->
 
 				<details>
-					<summary skip>games</summary>
+					<summary>games</summary>
 					<a target=_blank href="https://richiecarmichael.github.io/simulator/index.html">Flight simulator</a>
 					<a target=_blank href="https://matthewmain.github.io/kiss_the_sky/" params="cors">Kiss the Sky</a>
 					<a target=_blank href="https://hermann.is/gravity/" params="cors">Gravity</a>
+					<a target=_blank href="https://rakqoi.github.io/kittytoy" params="cors">Kittytoy</a>
 					<a target=_blank href="https://nullprogram.com/tapblock/" params="cors">Tapblock</a>
 					<a target=_blank href="https://i.simmer.io/@DreamstateS/fruitfat" params="cors">Fruit Fat</a>
 					<a target=_blank href="https://simonduff.net/invisilink/" params="cors">Invisilink</a>
+					<a target=_blank href="/?games-simple" params="cover=/order/#slideshowStart=1&slideshowDelay=180&url=/list/games-simple`nocomment">Simple games</a>
 				</details>
 
 				<details>
@@ -263,9 +265,6 @@
 				'contentOnly=0',
 				"excludeInput=\`cors",
 				`style=.optionButtons{display:none} .dark{background:#cde} .optionDetails a{color: #213764}`];
-			let paramsUnsplash = ['prependToInput=https://images.unsplash.com/photo-',
-				`appendToInput=` + encodeURIComponent(`?h=${window.outerHeight}&auto=format\`randflip\`nocomment\`container=img\`style=object-fit:contain`)
-				].join('&');
 			function showOrder(src) {
 				order.src = src;
 				order.classList.remove('hidden');
@@ -328,7 +327,6 @@
 					document.title = `${search}`;
 					document.querySelector('#title').innerHTML = document.title;
 					showOrder([`order/#${params.join('&')}`,
-						search.includes('unsplash') ? paramsUnsplash : '',
 						`shuffleInput=1`,
 						`slideshowDelay=20`,
 						`title=${search}`,
