@@ -28,10 +28,6 @@
 				align-items: center;
 				user-select: none;
 			}
-			.main {
-				background: #DDD;
-				height: 100%;
-			}
 			h2{
 				margin: 0 auto;
 			}
@@ -40,22 +36,30 @@
 				border: 0;
 				box-sizing: border-box;
 			}
+			#filter {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				pointer-events: none;
+				z-index: 0;
+				image-rendering: pixelated;
+				filter: opacity(0.1);
+			}
 			#links {
 				padding: 3mm;
 			}
 			#links a {
 				display:block;
-				color: #213764;
 				text-decoration: none;
+				color: #213764;
 			}
 			#links a:hover {
 				text-decoration: underline;
 			}
 			#links summary a {
 				display: inline;
-			}
-			.hidden {
-				display:none !important;
 			}
 			details{ 
 				text-align: left;
@@ -72,35 +76,45 @@
 				user-select: none;
 			}
 		</style>
+		<noscript>
+			<style>
+				#links, #title {
+					display: block !important;
+				}
+				.script {
+					display: none !important;
+				}
+			</style>
+		</noscript>
 	</head>
 	<body>
 		<div class='header'>
-			<h2><a id='title' href='/'>Nikita Korzhitskii</a></h2>
+			<h2><a id='title' style='display:none' href='/'>Nikita Korzhitskii</a></h2>
 		</div>
 
-		<div id='links' class='hidden noscript'>
+		<div id='links' style='display:none'>
 			<details>
 				<summary>about</summary>
 				<p>This website contains my projects and internet bookmarks.</p>
-				<p class='jsrequired hidden'>Scroll down to browse through the bookmarks.</p>
-				<p><noscript>Enable JavaScript to browse the link feed.</noscript></p>
+				<p class='script'>Scroll down to browse through the bookmarks.</p>
+				<p><noscript>Showing only links that load without JavaScript.</noscript></p>
 				<p>Nikita Korzhitskii, computer scientist, M.Sc.</p>
 			</details>
 
 			<details>
 				<summary skip>bookmarks</summary>
-				<details>
+				<details class='script'>
 					<summary skip>visuals</summary>
 					<a target=_blank href="/?shaders">shaders</a>
 					<a target=_blank href="/?panoramas">panoramas</a>					
-					<a target=_blank href="/order/#viewStart=1&appendToInput=?h%3Dheight%26auto%3Dformat%60randflip%60nocomment%60container%3Dimg%60style%3Dobject-fit:cover%60rewrite%3F%22height%22%3Dwindow.outerHeight&prependToInput=https://images.unsplash.com/photo-&shuffleInput=1&viewMode=gallery&gallerySize=2&title=Unsplash&style=.contentOnlyTrigger{display:none}&url=/list/unsplash-stock-photos" params="cover=/order/#slideshowStart=1&slideshowDelay=12&appendToInput=?h%3Dheight%26auto%3Dformat%60randflip%60nocomment%60container%3Dimg%60style%3Dobject-fit:cover%60rewrite%3F%22height%22%3Dwindow.outerHeight&prependToInput=https://images.unsplash.com/photo-&style=.dark{background:#cde}&url=/list/unsplash-stock-photos`nocomment`title=unsplash.com">unsplash</a>
+					<a target=_blank href="/order/#viewStart=1&appendToInput=?max-w%3Dwidth%26max-h%3Dheight%26fit%3Dcrop%26crop%3Dentropy%26auto%3Dformat%60randflip%60nocomment%60container%3Dimg%60style%3Dobject-fit:cover%60rewrite%3F%22width%22%3Dwindow.outerWidth%26%22height%22%3Dwindow.outerHeight&prependToInput=https://images.unsplash.com/photo-&shuffleInput=1&viewMode=gallery&gallerySize=2&title=Unsplash&style=.contentOnlyTrigger{display:none}&url=/list/unsplash-stock-photos" params="cover=/order/#slideshowStart=1&slideshowDelay=12&appendToInput=?max-w%3Dwidth%26max-h%3Dheight%26fit%3Dcrop%26crop%3Dentropy%26auto%3Dformat%60randflip%60nocomment%60container%3Dimg%60style%3Dobject-fit:cover%60rewrite%3F%22width%22%3Dwindow.outerWidth%26%22height%22%3Dwindow.outerHeight&prependToInput=https://images.unsplash.com/photo-&style=.dark{background:#cde}&url=/list/unsplash-stock-photos`nocomment`title=unsplash.com">unsplash</a>
 					<a target=_blank href="/?webgl">webgl</a>
 				</details>
 				<!-- music -->
 				<!-- videos -->
 				<!-- podcasts -->
 
-				<details>
+				<details class='script'>
 					<summary>games</summary>
 					<a target=_blank href="https://richiecarmichael.github.io/simulator/index.html">Flight simulator</a>
 					<a target=_blank href="https://matthewmain.github.io/kiss_the_sky/" params="cors">Kiss the Sky</a>
@@ -112,7 +126,7 @@
 					<a target=_blank href="/?games-simple" params="cover=/order/#slideshowStart=1&slideshowDelay=180&style=.dark{background:#cde}&url=/list/games-simple`nocomment">Simple games</a>
 				</details>
 
-				<details>
+				<details class='script'>
 					<summary>maps</summary>
 					<a target=_blank href="https://embed.windy.com/embed.html?zoom=3&level=surface&overlay=temp&product=ecmwf">Windy</a>
 					<a target=_blank href="https://www.windfinder.com/" params="cors">Windfinder</a>
@@ -155,27 +169,27 @@
 				<details>
 					<summary>dev</summary>
 					<p>Tools</p>
-					<a target=_blank href="https://regexr.com" params="cors">Regular expressions</a>
+					<a target=_blank href="https://regexr.com" params="cors" class='script'>Regular expressions</a>
 					<a target=_blank href="https://caniuse.com/?search=webaudio">Can I use (a browser feature)</a>
-					<a target=_blank href="https://beautifier.io/"  params="cors">HTML beautifier</a>
-					<a target=_blank href="https://jbt.github.io/markdown-editor/" params="cors">Markdown editor</a>
+					<a target=_blank href="https://beautifier.io/"  params="cors" class='script'>HTML beautifier</a>
+					<a target=_blank href="https://jbt.github.io/markdown-editor/" params="cors" class='script'>Markdown editor</a>
 
 					<p>Tests</p>
-					<a target=_blank href="https://internet.nl/" params="cors">internet.nl website test</a>
+					<a target=_blank href="https://internet.nl/" params="cors" class='script'>internet.nl website test</a>
 					<a target=_blank href="https://www.webpagetest.org/" params="cors">webpagetest.org</a>
 					<a target=_blank href="https://www.w3.org/developers/tools/" params="cors">HTML Validators</a>
 					<a target=_blank href="https://browserleaks.com" params="cors">browser fingerprints</a>
 					<a target=_blank href="https://clienttest.ssllabs.com:8443/ssltest/viewMyClient.html" params="cors">SSLlabs browser test</a>
-					<a target=_blank href="https://badssl.com/dashboard/">BadSSL browser test</a>
-					<a target=_blank href="https://www.jsdelivr.com/globalping">GlobalPing</a>
+					<a target=_blank href="https://badssl.com/dashboard/" class='script'>BadSSL browser test</a>
+					<a target=_blank href="https://www.jsdelivr.com/globalping" class='script'>GlobalPing</a>
 					
-					<p>Generative</p>
-					<a target=_blank href="https://ehristoforu-solatium.hf.space/" params="style=filter:saturate(0)`title=solatium`nocomment`cors">Chat</a>
-					<a target=_blank href="https://damarjati-flux-1-realismlora.hf.space/" params="cors">Flux Realism</a>
-					<a target=_blank href="https://r3gm-sonitranslate-translate-audio-of-a-video-content.hf.space/" params="cors">Transcribe and translate</a>
+					<p class='script'>Generative</p>
+					<a target=_blank href="https://ehristoforu-solatium.hf.space/" params="style=filter:saturate(0)`title=solatium`nocomment`cors" class='script'>Chat</a>
+					<a target=_blank href="https://damarjati-flux-1-realismlora.hf.space/" params="cors" class='script'>Flux Realism</a>
+					<a target=_blank href="https://r3gm-sonitranslate-translate-audio-of-a-video-content.hf.space/" params="cors" class='script'>Transcribe and translate</a>
 
 					<p>Search</p>
-					<a target=_blank href="https://awesomelists.top/" params="cors">Awesome-lists search</a>
+					<a target=_blank href="https://awesomelists.top/" params="cors" class='script'>Awesome-lists search</a>
 					<a target=_blank href="https://crt.sh" params="noscript`nocomment">crt.sh: certificate search</a>
 					<a target=_blank href="https://theresanaiforthat.com/s/audio+restoration/" params="title=ai catalog`nocomment`cors">AI catalog</a>
 					
@@ -188,7 +202,7 @@
 
 				<details>
 					<summary>people</summary>
-					<a target=_blank href="https://gwern.net/note/faster">Gwern Branwen</a>
+					<a target=_blank href="https://gwern.net/note/faster" class='script'>Gwern Branwen</a>
 					<a target=_blank href="https://reindernijhoff.net">Reinder Nijhoff</a>
 					<a target=_blank href="https://www.devever.net/~hl" params="cors">Hugo Landau</a>
 					<a target=_blank href="https://blog.filippo.io">Filippo Valsorda</a>
@@ -203,7 +217,7 @@
 					<a target=_blank href="https://tomscii.sig7.se/">Tom Szilagyi</a>
 					<a target=_blank href="https://darekkay.com/blog" params="cors">Darek Kay</a>
 					<a target=_blank href="https://upcoder.com/">Thomas Young</a>
-					<a target=_blank href="https://msakuta.github.io/showcase.html">Masahiro Sakuta</a>
+					<a target=_blank href="https://msakuta.github.io/showcase.html" class='script'>Masahiro Sakuta</a>
 					<a target=_blank href="https://www.grahamedgecombe.com/" params="cors">Graham Edgecombe</a>
 					<a target=_blank href="https://onecm.com/v4/sun-seeds.html">Ryan Alexander</a>
 					<a target=_blank href="https://aditsachde.com/posts">Adit Sachde</a>
@@ -213,9 +227,9 @@
 
 				<details>
 					<summary>websites</summary>
-					<a target=_blank href="https://dittytoy.net/ditty/browse/love/">dittytoy</a>
-					<a target=_blank href="https://oneshader.net/shader/browse/love/">oneshader</a>
-					<a target=_blank href="https://turtletoy.net/turtle/browse/love/">turtletoy</a>
+					<a target=_blank href="https://dittytoy.net/ditty/browse/love/" class='script'>dittytoy</a>
+					<a target=_blank href="https://oneshader.net/shader/browse/love/" class='script'>oneshader</a>
+					<a target=_blank href="https://turtletoy.net/turtle/browse/love/" class='script'>turtletoy</a>
 					<a target=_blank href="https://personalsit.es/" params="cors">personalsit.es</a>
 					<a target=_blank href="https://curlie.org/en" params="cors">curlie: directory of websites</a>
 				</details>
@@ -243,32 +257,54 @@
 			</details>
 		</div>
 
-		<iframe id='order' class='hidden'></iframe>
+		<iframe id='order' style='display:none'></iframe>
+		<div id='filter'></div>
 		<script>
 			let links = document.querySelector('#links');
 			let order = document.querySelector('#order');
+			let filter = document.querySelector('#filter');
 			let search = decodeURIComponent(document.location.search).slice(1);
+			let title = document.querySelector('#title');
 			let selection;
-			links.classList.add('hidden');
-		</script>
-		<script>
-			async function list(name){
-				let response = await fetch(`/list/${search}`);
-				if (!response.ok)
-					throw(`List ${name} not found`);
-				return response.text();
+
+			let params = {
+				gallerySize: 1.6,
+				contentOnly: 0,
+				excludeInput: '\`cors',
+				style: '.optionButtons{display:none} .dark{background:#cde} .optionDetails a{color: #213764}'
 			}
-		</script>
-		<script>
-			let params = [
-				'gallerySize=1.6',
-				'contentOnly=0',
-				"excludeInput=\`cors",
-				`style=.optionButtons{display:none} .dark{background:#cde} .optionDetails a{color: #213764}`];
-			function showOrder(src) {
-				order.src = src;
-				order.classList.remove('hidden');
-				links.classList.remove('noscript');
+
+			function loadList(name){
+				const req = new XMLHttpRequest();
+				req.addEventListener("load", function (event) {
+					if (event.srcElement.statusText === "OK" || event.srcElement.status == 200) {
+						document.title = `${search}`;
+						params.shuffleInput = 1;
+						params.slideshowDelay = 20;
+						params.title = `${search}`;
+						params.slideshowPreTransitionDelay = 3;
+						if  (window.parent != window.top) {
+							params.nested = 1;
+							params.slideshowStart = 1;
+						} else {
+							params.viewStart = 1;
+						}
+						params.input = encodeURIComponent(event.srcElement.responseText.trim());
+						showOrder();
+					} else {
+						throw(`List ${name} not found`);
+					}
+				});
+				req.open("GET", `/list/${search}`);
+				req.send();
+			}
+
+			function showOrder() {
+				title.innerHTML = document.title;
+				order.src = `/order/#${Object.keys(params).map((key)=>{return `${key}${params[key] !== '' ? '=' + params[key] : ''}`}).join("&")}`;
+				links.style = 'display:none';
+				order.style = '';
+				title.style = '';
 			}
 
 			function makeSummaryLink(summary) {
@@ -279,7 +315,7 @@
 				if (e.target.tagName == 'SUMMARY' && !e.target.querySelector('a'))
 					makeSummaryLink(e.target);
 			});
-			
+
 			if (search) {
 				Array.from(links.querySelectorAll('summary')).map((s) => {
 					if (s.innerHTML == search) {
@@ -290,14 +326,14 @@
 							p.open = true;
 							p = p.parentElement;
 						}
-						document.title = `${search} | Nikita Korzhitskii`;
-						document.querySelector('#title').innerHTML = document.title;
+						document.title = `${search} | ${document.title}`;
 					}
 				});
 			}
 
 			if (self != window.top && document.location.hash != '#full') {
-				document.querySelector('.header').classList.add('hidden');
+				document.querySelector('.header').style = 'display:none';
+				filter.style = 'display:none';
 			}
 
 			if (self == window.top && (!search || selection)) {
@@ -317,39 +353,40 @@
 					})
 					.filter((el) => el)
 					.join('\n');
-				showOrder(`order/#${params.map((p) => {
-					return p.startsWith('style') ? p + ' #viewerStartSlideshowButton{display:none}' : p;
-				}).join('&')}&viewStart=1&title=${search || 'main'}&input=${encodeURIComponent(input)}`);
+				params.style = [params.style, '#viewerStartSlideshowButton{display:none}'].join(' ');
+				params.viewStart = 1;
+				params.input = encodeURIComponent(input);
+				params.title = search || 'main';
+				showOrder();
 			}
 
 			if (search && !selection) {
-				list(search).then((input) => {
-					document.title = `${search}`;
-					document.querySelector('#title').innerHTML = document.title;
-					showOrder([`order/#${params.join('&')}`,
-						`shuffleInput=1`,
-						`slideshowDelay=20`,
-						`title=${search}`,
-						`slideshowPreTransitionDelay=3`,
-						(window.parent != window.top) ? 'slideshowStart=1&nested=1' : 'viewStart=1',
-						`input=${encodeURIComponent(input)}`
-					].join('&'));
-				}).finally(() => {
-					if (order.classList.contains('hidden'))
-						links.classList.remove('hidden');
-				});
+				loadList(search);
 			} else if (self != window.top) {
-				links.classList.remove('hidden');
-				Array.from(document.querySelectorAll('.jsrequired.hidden')).map((el) => el.classList.remove('hidden'));
+				links.style = '';
+				order.style = 'display:none';
 			}
+
+			let starting = true;
 		</script>
 		<script>
-			links.classList.remove('noscript');
-		</script>
-		<style>
-			#links.hidden.noscript {
-				display: block !important;
+			let styleSheet = new CSSStyleSheet();
+			let canvas = document.createElement('canvas');
+			canvas.width = 150;
+			canvas.height = 150;
+			let ctx = canvas.getContext('2d');
+			let imageData = ctx.createImageData(canvas.width, canvas.height);
+			let s = 1, r = () => (s = (s * 3) % 2**31, (s - 1) / 2**31 * 255 | 0);
+			for (let i = 0; i < imageData.data.length; i += 4) {
+				imageData.data.set([r(), r(), r(), 255], i);
 			}
-		</style>
+			ctx.putImageData(imageData, 0, 0);
+			styleSheet.replaceSync(`#filter {background: url(${canvas.toDataURL()})}`);
+			document.adoptedStyleSheets = document.adoptedStyleSheets.concat(styleSheet);
+		</script>
+		<script>
+			if (typeof starting == 'undefined')
+				document.body.innerHTML += document.getElementsByTagName('noscript')[0].innerHTML;
+		</script>
 	</body>
 </html>
