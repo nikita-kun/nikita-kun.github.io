@@ -372,7 +372,7 @@
 			let starting = true;
 		</script>
 		<script>
-			let styleSheet = new CSSStyleSheet();
+			let style = document.styleSheets[0];
 			let canvas = document.createElement('canvas');
 			canvas.width = 150;
 			canvas.height = 150;
@@ -383,8 +383,7 @@
 				imageData.data.set([r(), r(), r(), 255], i);
 			}
 			ctx.putImageData(imageData, 0, 0);
-			styleSheet.replaceSync(`#filter {background: url(${canvas.toDataURL()})}`);
-			document.adoptedStyleSheets = document.adoptedStyleSheets.concat(styleSheet);
+			style.insertRule(`#filter {background: url(${canvas.toDataURL()})}`, style.cssRules.length);
 		</script>
 		<script>
 			if (typeof starting == 'undefined')
