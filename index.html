@@ -311,23 +311,26 @@
 
 			function makeSummaryLink(summary) {
 				summary.innerHTML = `<b><a target=_top href='/?${summary.innerHTML}'>${summary.innerHTML}</a></b>`;
+				let p = summary.parentElement;
+				while (p && p.tagName == 'DETAILS') {
+					p.open = true;
+					p.setAttribute('open',true);
+					p = p.parentElement;
+				}
 			}
 
 			links.addEventListener('click', (e) => {
-				if (e.target.tagName == 'SUMMARY' && !e.target.querySelector('a'))
+				if (e.target.tagName == 'SUMMARY' && !e.target.querySelector('a')){
 					makeSummaryLink(e.target);
+					e.preventDefault();
+				}
 			});
 
 			if (search) {
 				Array.from(links.querySelectorAll('summary')).map((s) => {
 					if (s.innerHTML == search) {
 						makeSummaryLink(s);
-						let p = s.parentElement;
 						selection = s.parentElement;
-						while (p && p.tagName == 'DETAILS') {
-							p.open = true;
-							p = p.parentElement;
-						}
 						document.title = `${search} | ${document.title}`;
 					}
 				});
