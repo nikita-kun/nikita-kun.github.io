@@ -113,7 +113,7 @@
 		<div id='links' style='display:none'>
 			<details>
 				<summary>about</summary>
-				<img loading='lazy' class='portrait script' alt='Nikita Korzhitskii' src="cv/portrait.jpg"/>
+				<img class='portrait script' alt='Nikita Korzhitskii' src="cv/portrait.jpg"/>
 				<p>This website contains my projects and internet bookmarks.</p>
 				<p class='script'>Scroll down to browse through the bookmarks.</p>
 				<p><noscript>Showing only links that load without JavaScript.</noscript></p>
@@ -346,7 +346,6 @@
 			});
 
 			while (true){
-
 				if (search) {
 					Array.from(links.querySelectorAll('summary')).map((s) => {
 						if (s.innerHTML == search || search == 'sitemap') {
