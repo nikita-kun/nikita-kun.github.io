@@ -101,7 +101,19 @@
 				border-radius: 10%;
 			}
 		</style>
-		<noscript><style>#links,#title{display:block !important;} .script{display:none !important;} body{overflow:auto !important;}</style></noscript>
+		<noscript>
+			<style>
+				#links, #title {
+					display:block !important;
+				}
+				.script {
+					display:none !important;
+				}
+				body {
+					overflow:auto !important;
+				}
+			</style>
+		</noscript>
 	</head>
 	<body>
 		<div class='header'>
@@ -449,8 +461,9 @@
 			style.insertRule(`#filter {background: url(${canvas.toDataURL()})}`, style.cssRules.length);
 		</script>
 		<script>
-			if (typeof starting == 'undefined')
-				document.body.innerHTML += document.getElementsByTagName('noscript')[0].innerHTML;
+			if (typeof starting == 'undefined'){
+				document.body.innerHTML += document.getElementsByTagName('noscript')[0].textContent;
+			}
 		</script>
 	</body>
 </html>
