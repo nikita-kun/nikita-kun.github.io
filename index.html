@@ -8,19 +8,17 @@
 		<meta name="robots" content="index, follow">
 		<meta name="creator" content="Nikita Korzhitskii">
 		<meta name="author" content="Nikita Korzhitskii">
+		<meta name="brand" content="Nikita Korzhitskii">
 		<meta name="title" content="Nikita Korzhitskii | HOMEPAGE">
-		<link rel="index" title="Nikita Korzhitskii | HOMEPAGE" href="https://nikita-kun.github.io/?sitemap">
+		<link rel="index" title="Nikita Korzhitskii | HOMEPAGE |" href="https://nikita-kun.github.io/?sitemap">
 		<meta property="og:title" content="Nikita Korzhitskii | HOMEPAGE: bookmarks and projects">
 		<meta property="og:type" content="website">
 		<meta property="og:url" content="https://nikita-kun.github.io/">
 		<meta name="description" content="Personal page of Nikita Korzhitskii: projects, bookmarks, research, order, code">
 		<meta property="og:description" content="Personal page of Nikita Korzhitskii: projects, bookmarks, research, order, code">
 		<meta property="og:site_name" content="nikita-kun.github.io">
-		<!-- dynamic meta title in js try -->
 		<meta property="og:image" content="https://nikita-kun.github.io/cv/avatar.jpg">
 		<meta property="og:image:alt" content="Portrait of Nikita Korzhitskii">
-		<meta property="og:image:width" content="360">
-		<meta property="og:image:height" content="360">
 		<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ccircle%20cx='50'%20cy='50'%20r='50'%20fill='%235577aa'/%3E%3C/svg%3E">
 		<style>
 			body {
@@ -103,19 +101,7 @@
 				border-radius: 10%;
 			}
 		</style>
-		<noscript>
-			<style>
-				#links, #title {
-					display: block !important;
-				}
-				.script {
-					display: none !important;
-				}
-				body {
-					overflow: auto !important;
-				}
-			</style>
-		</noscript>
+		<noscript><style>#links,#title{display:block !important;} .script{display:none !important;} body{overflow:auto !important;}</style></noscript>
 	</head>
 	<body>
 		<div class='header'>
@@ -297,6 +283,7 @@
 			let filter = document.querySelector('#filter');
 			let search = decodeURIComponent(document.location.search).slice(1);
 			let title = document.querySelector('#title');
+			let brand = document.querySelector('meta[name=brand]').content;
 			let selection;
 
 			let params = {
@@ -306,14 +293,41 @@
 				style: '.optionButtons{display:none} .dark{background:#cde} .optionDetails a{color: #213764}'
 			}
 
+			function metadata(tabTitle, metaTitle, header, url, description, keywords, type, site_name, author, creator, image, alt){
+				try{
+					tabTitle ? document.title = tabTitle : 0;
+					metaTitle ? document.querySelector('meta[name=title]').content = metaTitle : 0;
+					metaTitle ? document.querySelector('meta[property="og:title"]').content = metaTitle : 0;
+					header ? title.innerHTML = header : 0;
+					url ? document.querySelector('meta[property="og:url"]').content = url : 0;
+					description ? document.querySelector('meta[property="og:description"]').content = description : 0;
+					description ? document.querySelector('meta[name=description]').content = description : 0;
+					keywords ? document.querySelector('meta[name=keywords]').content = keywords : 0;
+					type ? document.querySelector('meta[property="og:type"]').content = type : 0;
+					site_name ? document.querySelector('meta[property="og:site_name"]').content = site_name : 0;
+					author ? document.querySelector('meta[name=author]').content = author : 0;
+					creator ? document.querySelector('meta[name=creator]').content = creator : 0;
+					image ? document.querySelector('meta[property="og:image"]').content = image : 0;
+					alt ? document.querySelector('meta[property="og:image:alt"]').content = alt : 0;
+				} catch (e) {
+					console.error(e);
+				}
+			}
+
 			function loadList(name){
 				const req = new XMLHttpRequest();
 				req.addEventListener("load", function (event) {
 					if (event.srcElement.statusText === "OK" || event.srcElement.status == 200) {
-						document.title = `${search}`;
+						metadata(
+							search.toUpperCase(),
+							`Nikita Korzhitskii | BOOKMARKS | ${search.toUpperCase()}`,
+							search.toUpperCase(),
+							`${window.location.origin}/?${search}`,
+							undefined, undefined, undefined, undefined, search, search
+						)
 						params.shuffleInput = 1;
 						params.slideshowDelay = 20;
-						params.title = `${search}`;
+						params.title = `${search.toUpperCase()}`;
 						params.slideshowPreTransitionDelay = 3;
 						if  (window.parent != window.top) {
 							params.nested = 1;
@@ -322,7 +336,7 @@
 							params.viewStart = 1;
 						}
 						params.input = encodeURIComponent(event.srcElement.responseText.trim());
-						showOrder();
+						initOrder();
 					} else {
 						window.location.href = '/';
 						throw(`List ${name} not found`);
@@ -332,8 +346,7 @@
 				req.send();
 			}
 
-			function showOrder() {
-				title.innerHTML = search ? document.title : title.innerHTML;
+			function initOrder() {
 				order.src = `/order/#${Object.keys(params).map((key)=>{return `${key}${params[key] !== '' ? '=' + params[key] : ''}`}).join("&")}`;
 				links.style = 'display:none';
 				order.style = '';
@@ -360,10 +373,19 @@
 			while (true){
 				if (search) {
 					Array.from(links.querySelectorAll('summary')).map((s) => {
-						if (s.innerHTML == search || search == 'sitemap') {
+						if (search == 'sitemap')
+							makeSummaryLink(s);
+						if (s.innerHTML == search) {
 							makeSummaryLink(s);
 							selection = s.parentElement;
-							document.title = `${search} | ${title.innerText}`;
+							metadata(
+								`${search} | ${brand}`,
+								`${brand} | ${search.toUpperCase()}`,
+								`${search} | ${brand}`,
+								`${window.location.origin}/?${search}`,
+								s.parentElement.textContent.replace(/[\n\t]+/gi,' – '), 
+								search
+							)
 						}
 					});
 				}
@@ -398,7 +420,7 @@
 					params.viewStart = 1;
 					params.input = encodeURIComponent(input);
 					params.title = search || 'main';
-					showOrder();
+					initOrder();
 				}
 
 				if (search && !selection) {
