@@ -102,7 +102,7 @@
 			}
 		</style>
 		<noscript>
-			<style>
+			<style class='noscript'>
 				#links, #title {
 					display:block !important;
 				}
@@ -381,9 +381,9 @@
 					e.preventDefault();
 				}
 			});
-			
+
 			window.addEventListener('message', (event) => {
-				if (event.origin === window.location.origin && event.data.dataOrderException && !document.body.getElementsByTagName('noscript').length) {
+				if (event.origin === window.location.origin && event.data.dataOrderException && !document.querySelector('style.noscript')) {
 					order.src = 'about:blank';
 					order.removeAttribute('src');
 					document.body.innerHTML += document.getElementsByTagName('noscript')[0].textContent;
