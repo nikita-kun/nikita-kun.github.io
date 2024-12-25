@@ -385,12 +385,10 @@
 			window.addEventListener('message', (event) => {
 				if (event.origin === window.location.origin && event.data.dataOrderException) {
 					document.body.innerHTML += document.getElementsByTagName('noscript')[0].textContent;
-					window.removeEventListener('message', this);
-					throw event.data.dataOrderException;
 				}
 			});
-			
-			while (true){
+			let started = 0;
+			while (!started++){
 				if (search) {
 					Array.from(links.querySelectorAll('summary')).map((s) => {
 						if (search == 'sitemap')
