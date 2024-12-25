@@ -384,7 +384,7 @@
 			
 			window.addEventListener('message', (event) => {
 				console.log(event);
-				if (event.origin === this.window.origin && event.data.dataStarting == 'false') {
+				if (event.origin === this.window.location.origin && event.data.dataStarting == 'false') {
 					document.body.innerHTML += document.getElementsByTagName('noscript')[0].textContent;
 				}
 			});
