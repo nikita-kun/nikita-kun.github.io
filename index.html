@@ -274,7 +274,7 @@
 				<!--Whiteboard-->
 				<!--Karaoke-->
 				<!--Wiki history-->
-				<!--Learning player-->
+				<!--Learning player, video/audio live restoration-->
 				<p><details>
 					<summary>research</summary>
 					<p>I've been conducting research in Internet security and cryptography at Linköping University (2017-2022)</p>
@@ -329,7 +329,7 @@
 			function loadList(name){
 				const req = new XMLHttpRequest();
 				req.addEventListener("load", function (event) {
-					if (event.srcElement.statusText === "OK" || event.srcElement.status == 200) {
+					if (event.target.statusText === "OK" || event.target.status == 200) {
 						metadata(
 							search.toUpperCase(),
 							`Nikita Korzhitskii | BOOKMARKS | ${search.toUpperCase()}`,
@@ -347,7 +347,7 @@
 						} else {
 							params.viewStart = 1;
 						}
-						params.input = encodeURIComponent(event.srcElement.responseText.trim());
+						params.input = encodeURIComponent(event.target.responseText.trim());
 						initOrder();
 					} else {
 						window.location.href = '/';
@@ -447,6 +447,8 @@
 			}
 		</script>
 		<script>
+			if (!CSS.supports('filter','opacity(0.5)'))
+				throw 'Post-processing off';
 			let style = document.styleSheets[0];
 			let canvas = document.createElement('canvas');
 			canvas.width = 150;
