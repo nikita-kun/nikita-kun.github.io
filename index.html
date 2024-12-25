@@ -383,10 +383,10 @@
 			});
 			
 			window.addEventListener('message', (event) => {
-				if (event.origin === window.location.origin && event.data.dataOrderException) {
-					document.body.innerHTML += document.getElementsByTagName('noscript')[0].textContent;
+				if (event.origin === window.location.origin && event.data.dataOrderException && !document.getElementsByTagName('noscript').length) {
 					order.src = 'about:blank';
-					order.removeAttribute("src");
+					order.removeAttribute('src');
+					document.body.innerHTML += document.getElementsByTagName('noscript')[0].textContent;
 				}
 			});
 
