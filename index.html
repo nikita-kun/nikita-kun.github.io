@@ -385,6 +385,7 @@
 			window.addEventListener('message', (event) => {
 				if (event.origin === window.location.origin && event.data.dataOrderException) {
 					document.body.innerHTML += document.getElementsByTagName('noscript')[0].textContent;
+					throw event.data.dataOrderException;
 				}
 			});
 
