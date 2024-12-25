@@ -385,10 +385,12 @@
 			window.addEventListener('message', (event) => {
 				if (event.origin === window.location.origin && event.data.dataOrderException) {
 					document.body.innerHTML += document.getElementsByTagName('noscript')[0].textContent;
+					order.src = 'about:blank';
+					order.removeAttribute("src");
 				}
 			});
-			let started = 0;
-			while (!started++){
+
+			while (true){
 				if (search) {
 					Array.from(links.querySelectorAll('summary')).map((s) => {
 						if (search == 'sitemap')
