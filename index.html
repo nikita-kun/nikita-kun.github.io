@@ -383,7 +383,7 @@
 			});
 			
 			window.addEventListener('message', (event) => {
-				if (event.origin === window.location.origin && event.data.dataOrderException && !document.getElementsByTagName('noscript').length) {
+				if (event.origin === window.location.origin && event.data.dataOrderException && !document.body.getElementsByTagName('noscript').length) {
 					order.src = 'about:blank';
 					order.removeAttribute('src');
 					document.body.innerHTML += document.getElementsByTagName('noscript')[0].textContent;
