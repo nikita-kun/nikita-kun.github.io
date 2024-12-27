@@ -464,8 +464,8 @@
 				throw 'Post-processing off';
 			let style = document.styleSheets[0];
 			let canvas = document.createElement('canvas');
-			canvas.width = 150;
-			canvas.height = 150;
+			canvas.width = 180;
+			canvas.height = 180;
 			let ctx = canvas.getContext('2d');
 			let imageData = ctx.createImageData(canvas.width, canvas.height);
 			let s = 1, r = () => (s = (s * 3) % 2**31, (s - 1) / 2**31 * 255 | 0);
@@ -473,7 +473,7 @@
 				imageData.data.set([r(), r(), r(), 255], i);
 			}
 			ctx.putImageData(imageData, 0, 0);
-			style.insertRule(`#filter {background: url(${canvas.toDataURL()})}`, style.cssRules.length);
+			style.insertRule(`#filter {background: url(${canvas.toDataURL()}); background-size: ${canvas.width / window.devicePixelRatio}px ${canvas.height / window.devicePixelRatio}px }`, style.cssRules.length);
 		</script>
 		<script>
 			if (typeof starting == 'undefined'){
