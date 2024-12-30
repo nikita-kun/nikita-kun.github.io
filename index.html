@@ -78,7 +78,7 @@
 			#links a:hover {
 				text-decoration: underline;
 			}
-			#links summary a {
+			#links summary a, #links .noscript a {
 				display: inline;
 			}
 			details{ 
@@ -104,8 +104,8 @@
 			}
 		</style>
 		<noscript>
-			<style class='noscript'>
-				#links, #title {
+			<style id='styleNoScript'>
+				#links, #title, .noscript {
 					display:block !important;
 				}
 				.script {
@@ -290,6 +290,11 @@
 				</details>
 				<a target=_blank href="https://github.com/nikita-kun" params="cors">GitHub</a>
 			</details>
+
+			<p class='noscript' style='display:none'>
+				This website (<a target=_blank href="/sitemap/sitemap.xml">XML sitemap</a>, <a target=_blank href="https://github.com/nikita-kun/nikita-kun.github.io/" params="cors">source code</a>) is built
+				using the <a target=_blank href="https://nikita-kun.github.io/order/">Order</a> engine <a target=_blank href="https://github.com/nikita-kun/order/" params="cors">(source code)</a>
+			</p>
 		</div>
 
 		<iframe id='order' class='script' style='display:none'></iframe>
@@ -388,7 +393,7 @@
 			});
 
 			window.addEventListener('message', (event) => {
-				if (event.origin === window.location.origin && event.data.dataOrderException && !document.querySelector('style.noscript')) {
+				if (event.origin === window.location.origin && event.data.dataOrderException && !document.querySelector('#styleNoScript')) {
 					order.src = 'about:blank';
 					order.removeAttribute('src');
 					document.body.innerHTML += document.getElementsByTagName('noscript')[0].textContent;
