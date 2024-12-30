@@ -1,1 +1,1 @@
-Sitemap: https://nikita-kun.github.io/sitemap/sitemap.xml
+Sitemap: https://nikita-kun.github.io/sitemap.xml
